@@ -51,6 +51,7 @@ parser.add_argument('--alpha', default=0.75, type=float)
 parser.add_argument('--lambda-u', default=75, type=float)
 parser.add_argument('--T', default=0.5, type=float)
 parser.add_argument('--ema-decay', default=0.999, type=float)
+parser.add_argument('--dropout', default=0.0, type=float)
 
 
 args = parser.parse_args()
@@ -93,9 +94,10 @@ def main():
 
     # Model
     print("==> creating WRN-28-2")
+    print(f"dropout={args.dropout}")
 
     def create_model(ema=False):
-        model = models.WideResNet(num_classes=10)
+        model = models.WideResNet(num_classes=10, dropRate=args.dropout)
         model = model.cuda()
 
         if ema:
