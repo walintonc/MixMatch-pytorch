@@ -152,6 +152,8 @@ def main():
 
         step = args.train_iteration * (epoch + 1)
 
+        writer.add_scalar('losses/train_loss_x', train_loss_x, step)
+        writer.add_scalar('losses/train_loss_u', train_loss_u, step)
         writer.add_scalar('losses/train_loss', train_loss, step)
         writer.add_scalar('losses/valid_loss', val_loss, step)
         writer.add_scalar('losses/test_loss', test_loss, step)
